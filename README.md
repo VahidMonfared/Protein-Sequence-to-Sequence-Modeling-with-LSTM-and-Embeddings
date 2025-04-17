@@ -1,0 +1,57 @@
+
+🔬 Protein Sequence-to-Sequence Modeling with LSTM and Embeddings
+📘 Project Overview
+
+This project demonstrates the application of a sequence-to-sequence (seq2seq) deep learning model to analyze and predict protein-related features using both categorical sequences (such as protein and peptide IDs) and continuous biochemical properties. The model is built using TensorFlow and Keras, and employs LSTM layers to learn temporal dependencies in sequence data, combined with dense representations of numerical attributes.
+It showcases how categorical biological features and quantitative descriptors can be encoded and used together in a neural network to reconstruct or predict key biological sequences—offering a novel angle for bioinformatics or biochemical engineering workflows.
+🧬 Context & Motivation
+
+In many biological and pharmaceutical applications, scientists work with complex datasets involving both sequential information (like protein or peptide sequences) and associated numerical properties (e.g., hydrophobicity, isoelectric point, etc.). Predicting missing sequences, reconstructing unknown protein features, or analyzing the impact of biochemical conditions on sequences can significantly aid drug discovery, vaccine design, and protein engineering.
+This project aims to:
+    Encode a hybrid dataset of categorical and numerical biological features.
+    Train a neural network to map from biochemical conditions back to sequence identifiers.
+    Demonstrate the use of a seq2seq architecture for inverse feature reconstruction.
+🧩 Problem Statement
+
+Given a dataset containing protein-related categorical attributes (e.g., protein and peptide sequences) and numerical descriptors (e.g., hydrophobicity, isoelectric point, stability), can we build a sequence-to-sequence model that:
+    Learns the combined patterns of these features?
+    Reconstructs the original categorical sequences from numerical inputs?
+    Simulates biological behavior in reverse, given only biochemical parameters?
+📂 Dataset Description
+The dataset (dataset.csv) includes the following features:
+    Categorical Features:
+        parent_protein_id
+        protein_seq
+        peptide_seq
+    Numerical Features:
+        start_position, end_position
+        chou_fasman, emini, kolaskar_tongaonkar, parker
+        isoelectric_point, aromaticity, hydrophobicity, stability
+    Target:
+        target (binary class or label for prediction)
+
+⚙️ What This Code Does
+    Loads and preprocesses a biological dataset containing both categorical and numerical features.
+    Encodes categorical columns using Label Encoding.
+    Scales numerical columns using MinMaxScaler.
+    Constructs an LSTM-based encoder-decoder model (sequence-to-sequence) using TensorFlow/Keras:
+        The encoder processes numerical and sequence data.
+        The decoder reconstructs categorical sequences based on the internal representation.
+    Trains the model to predict the categorical sequences from input features.
+
+    Includes a reverse_predict() function that performs inference: Given biochemical parameters (e.g., stability, isoelectric point), it predicts categorical protein sequence labels using the trained model.
+🧪 Example Usage
+
+# Predict sequence characteristics given a new set of numeric conditions
+result = reverse_predict(target=1, stability=8.9, emini=0.16, isoelectric_point=6.6)
+print("Predicted Features:", result)
+
+✅ Dependencies
+    Python 3.7+
+    pandas, numpy, sklearn
+    tensorflow (2.x)
+📌 Potential Applications
+    Bioinformatics sequence reconstruction
+    Protein feature simulation from experimental properties
+    Drug discovery models that require protein-peptide mapping
+    Educational demos for LSTM-based seq2seq architectures
